@@ -1,0 +1,51 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Karma.MSBuild.SvnTasks", "src\Karma.MSBuild.SvnTasks\Karma.MSBuild.SvnTasks.csproj", "{A135CF7C-E0C3-4771-9831-2B231818F470}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Karma.MSBuild.SvnTasks.Test", "tests\Karma.MSBuild.SvnTasks.Test\Karma.MSBuild.SvnTasks.Test.csproj", "{3B23A445-A8E1-4A77-862F-5F3E6EB2F692}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1794D8E2-AFBB-4434-808E-7C234936536B}"
+	ProjectSection(SolutionItems) = preProject
+		README.txt = README.txt
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A135CF7C-E0C3-4771-9831-2B231818F470}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A135CF7C-E0C3-4771-9831-2B231818F470}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A135CF7C-E0C3-4771-9831-2B231818F470}.Debug|x64.ActiveCfg = Debug|x64
+		{A135CF7C-E0C3-4771-9831-2B231818F470}.Debug|x64.Build.0 = Debug|x64
+		{A135CF7C-E0C3-4771-9831-2B231818F470}.Debug|x86.ActiveCfg = Debug|x86
+		{A135CF7C-E0C3-4771-9831-2B231818F470}.Debug|x86.Build.0 = Debug|x86
+		{A135CF7C-E0C3-4771-9831-2B231818F470}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A135CF7C-E0C3-4771-9831-2B231818F470}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A135CF7C-E0C3-4771-9831-2B231818F470}.Release|x64.ActiveCfg = Release|x64
+		{A135CF7C-E0C3-4771-9831-2B231818F470}.Release|x64.Build.0 = Release|x64
+		{A135CF7C-E0C3-4771-9831-2B231818F470}.Release|x86.ActiveCfg = Release|x86
+		{A135CF7C-E0C3-4771-9831-2B231818F470}.Release|x86.Build.0 = Release|x86
+		{3B23A445-A8E1-4A77-862F-5F3E6EB2F692}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B23A445-A8E1-4A77-862F-5F3E6EB2F692}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B23A445-A8E1-4A77-862F-5F3E6EB2F692}.Debug|x64.ActiveCfg = Debug|x64
+		{3B23A445-A8E1-4A77-862F-5F3E6EB2F692}.Debug|x64.Build.0 = Debug|x64
+		{3B23A445-A8E1-4A77-862F-5F3E6EB2F692}.Debug|x86.ActiveCfg = Debug|x86
+		{3B23A445-A8E1-4A77-862F-5F3E6EB2F692}.Debug|x86.Build.0 = Debug|x86
+		{3B23A445-A8E1-4A77-862F-5F3E6EB2F692}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B23A445-A8E1-4A77-862F-5F3E6EB2F692}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B23A445-A8E1-4A77-862F-5F3E6EB2F692}.Release|x64.ActiveCfg = Release|x64
+		{3B23A445-A8E1-4A77-862F-5F3E6EB2F692}.Release|x64.Build.0 = Release|x64
+		{3B23A445-A8E1-4A77-862F-5F3E6EB2F692}.Release|x86.ActiveCfg = Release|x86
+		{3B23A445-A8E1-4A77-862F-5F3E6EB2F692}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
