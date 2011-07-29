@@ -1,3 +1,4 @@
+using System;
 using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
 using SharpSvn;
@@ -16,10 +17,10 @@ namespace Karma.MSBuild.SvnTasks
         [Required]
         public string Username { get; set; }
 
-        public string Password { get; set; }
-
         [Required]
         public string RepositoryPath { get; set; }
+
+        public string Password { get; set; }
 
         #endregion
         

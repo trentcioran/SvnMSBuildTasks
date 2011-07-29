@@ -118,6 +118,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SvnCheckout.cs" />
     <Compile Include="SvnCleanup.cs" />
     <Compile Include="SvnInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

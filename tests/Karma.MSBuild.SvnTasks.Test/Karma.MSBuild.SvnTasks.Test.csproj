@@ -131,6 +131,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SvnCheckoutFixture.cs" />
     <Compile Include="SvnCleanupFixture.cs" />
     <Compile Include="SvnInfoFixture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
