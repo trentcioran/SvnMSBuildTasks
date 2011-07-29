@@ -9,7 +9,7 @@ namespace Karma.MSBuild.SvnTasks.Test
     public class SvnInfoFixture
     {
         [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
+        [ExpectedException(typeof (ArgumentNullException))]
         public void TestMissingParameters()
         {
             MockRepository repository = new MockRepository();
@@ -30,15 +30,16 @@ namespace Karma.MSBuild.SvnTasks.Test
 
             SvnInfo task = new SvnInfo();
             task.Username = "guest";
-            task.RepositoryPath = "C:\\Proyectos\\log4net";
+            task.RepositoryPath = "D:\\Proyectos\\log4net";
             task.BuildEngine = engine;
 
             bool success = task.Execute();
 
             Assert.That(success, Is.True);
-            Assert.That(task.Revision, Is.EqualTo(1146579));
+            Assert.That(task.Revision, Is.EqualTo(1146783));
             Assert.That(task.LastChangedAuthor, Is.EqualTo("rgrabowski"));
             Assert.That(task.LastChangedRevision, Is.EqualTo(1021982));
         }
     }
 }
+

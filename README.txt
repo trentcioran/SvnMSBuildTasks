@@ -4,9 +4,9 @@ SVN MSBUild Tasks takes a different approach than tigris version using SharpSVN 
 
 Commands currently supported:
 - info
+- cleanup
 
 Roadmap:
-- cleanup
 - checkout
 - update
 - commit

@@ -1,26 +1,12 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using Microsoft.Build.Framework;
-using Microsoft.Build.Utilities;
 using SharpSvn;
-using SharpSvn.Security;
 
 namespace Karma.MSBuild.SvnTasks
 {
-    public class SvnInfo : Task
+    public class SvnInfo : SvnTaskBase
     {
-        #region Inputs
-        
-        [Required]
-        public string Username { get; set; }
-
-        public string Password { get; set; }
-
-        [Required]
-        public string RepositoryPath { get; set; }
-
-        #endregion
-
         #region Outputs
 
         [Output]
@@ -46,28 +32,13 @@ namespace Karma.MSBuild.SvnTasks
 
         #endregion
 
-        public override bool Execute()
+        /// <summary>
+        /// Actual method to be executed for the implementing task
+        /// </summary>
+        /// <param name="client">The instance of the SVN client</param>
+        /// <returns></returns>
+        public override bool ExecuteCommand(SvnClient client)
         {
-            SvnClient client = new SvnClient();
-            client.Authentication.Clear();
-            if (string.IsNullOrEmpty(Password))
-            {
-                client.Authentication.UserNameHandlers +=
-                    delegate(object o, SvnUserNameEventArgs eventArgs)
-                        {
-                            eventArgs.UserName = Username;
-                        };
-            }
-            else
-            {
-                client.Authentication.UserNamePasswordHandlers +=
-                    delegate(object o, SvnUserNamePasswordEventArgs eventArgs)
-                        {
-                            eventArgs.UserName = Username;
-                            eventArgs.Password = Password;
-                        };
-            }
-
             SvnTarget target = new SvnPathTarget(RepositoryPath);
             SvnInfoArgs args = new SvnInfoArgs();
             Collection<SvnInfoEventArgs> infoResult = new Collection<SvnInfoEventArgs>();
