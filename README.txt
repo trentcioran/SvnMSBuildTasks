@@ -5,13 +5,16 @@ SVN MSBUild Tasks takes a different approach than tigris version using SharpSVN 
 Commands currently supported:
 - info
 - cleanup
-- checkout
+- list
+- checkout (limmited support)
+
+In progress
+- revert
 
 Roadmap:
 - update
 - commit
 - merge
 - export
-- list
-- log
-- revert
+
+NOTE: CURRENTLY HTTPS IS NOT SUPPORTED.

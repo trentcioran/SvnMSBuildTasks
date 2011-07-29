@@ -122,7 +122,10 @@
     <Compile Include="SvnCleanup.cs" />
     <Compile Include="SvnInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SvnList.cs" />
+    <Compile Include="SvnRevert.cs" />
     <Compile Include="SvnTaskBase.cs" />
+    <Compile Include="SvnUpdate.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

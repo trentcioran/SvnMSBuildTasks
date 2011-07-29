@@ -9,7 +9,7 @@ namespace Karma.MSBuild.SvnTasks.Test
     public class SvnCheckoutFixture
     {
         [Test]
-        [ExpectedException(typeof(ArgumentException))]
+        [ExpectedException(typeof(UriFormatException))]
         public void TestInvalidUrl()
         {
             MockRepository repository = new MockRepository();
@@ -17,8 +17,8 @@ namespace Karma.MSBuild.SvnTasks.Test
 
             SvnCheckout task = new SvnCheckout();
             task.Username = "guest";
-            task.RepositoryPath = string.Format("D:\\tmp\\log4net\\{0}", DateTime.Now.Ticks);
-            task.RepositoryUrl = "http://svn.apache.org/repos/asf/logging/log4net/trunk";
+            task.RepositoryPath = string.Format("C:\\tmp\\testrepo\\{0}", DateTime.Now.Ticks);
+            task.RepositoryUrl = "someurl";
             task.BuildEngine = engine;
 
             task.Execute();
@@ -32,25 +32,56 @@ namespace Karma.MSBuild.SvnTasks.Test
 
             SvnCheckout task = new SvnCheckout();
             task.Username = "guest";
-            task.RepositoryPath = string.Format("D:\\tmp\\log4net\\{0}", DateTime.Now.Ticks);
-            task.RepositoryUrl = "http://svn.apache.org/repos/asf/logging/log4net/trunk";
+            task.RepositoryPath = string.Format("C:\\tmp\\testrepo\\{0}", DateTime.Now.Ticks);
+            task.RepositoryUrl = "http://karma-test-repository.googlecode.com/svn/";
             task.BuildEngine = engine;
 
             bool success = task.Execute();
 
             Assert.That(success, Is.True);
+            Assert.That(task.CheckedRevision, Is.Not.EqualTo(0));
         }
 
         [Test]
         public void TestCheckoutSpecificRevision()
         {
-            
+            Assert.Fail();
         }
 
         [Test]
         public void TestCheckoutSpecificDate()
         {
-            
+            Assert.Fail();
+        }
+
+        [Test]
+        public void TestCheckoutDepthInfinity()
+        {
+            Assert.Fail();
+        }
+
+        [Test]
+        public void TestCheckoutDepthChildren()
+        {
+            Assert.Fail();
+        }
+
+        [Test]
+        public void TestCheckoutDepthEmpty()
+        {
+            Assert.Fail();
+        }
+
+        [Test]
+        public void TestCheckoutDepthExclude()
+        {
+            Assert.Fail();
+        }
+
+        [Test]
+        public void TestCheckoutDepthFiles()
+        {
+            Assert.Fail();
         }
     }
 }

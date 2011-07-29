@@ -46,7 +46,7 @@ namespace Karma.MSBuild.SvnTasks
         #region Outputs
 
         [Output]
-        protected long CheckedRevision { get; private set; }
+        public long CheckedRevision { get; private set; }
 
         #endregion
 
@@ -70,6 +70,7 @@ namespace Karma.MSBuild.SvnTasks
             if (result.HasRevision)
             {
                 CheckedRevision = result.Revision; 
+                Log.LogMessage(MessageImportance.Normal, "Checked revision: {0}", CheckedRevision);
             }
             if (result.HasResultMap)
             {
@@ -81,16 +82,17 @@ namespace Karma.MSBuild.SvnTasks
 
         private void ReadResults(SvnUpdateResult result)
         {
-            //IDictionary<string, SvnUpdateResult> results = result.ResultMap;
-            //foreach (string key in results.Keys)
-            //{
-            //    SvnUpdateResult updateResult = results[key];
-            //    updateResult.
-            //}
+            IDictionary<string, SvnUpdateResult> results = result.ResultMap;
+            foreach (string key in results.Keys)
+            {
+                SvnUpdateResult updateResult = results[key];
+                Log.LogMessage(MessageImportance.Normal, "[{0} - {1}]", key, updateResult.Revision);
+            }
         }
 
         private SvnRevision GetRevision()
         {
+            Log.LogMessage(MessageImportance.Low, "Revision to checkout: {0}", Revision);
             // defaults to HEAD
             SvnRevision revision = new SvnRevision(SvnRevisionType.Head);
             // check revision number
@@ -118,7 +120,12 @@ namespace Karma.MSBuild.SvnTasks
         private SvnDepth GetDepth()
         {
             SvnDepth depthValue = SvnDepth.Infinity;
-            SvnDepth.TryParse(Depth, true, out depthValue);
+            if (!string.IsNullOrEmpty(Depth))
+            {
+                SvnDepth.TryParse(Depth, true, out depthValue);
+            }
+
+            Log.LogMessage(MessageImportance.Low, "Depth of checkout: {0}", depthValue);
             return depthValue;
         }
     }
