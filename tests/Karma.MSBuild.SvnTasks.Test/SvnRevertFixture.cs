@@ -31,8 +31,48 @@ namespace Karma.MSBuild.SvnTasks.Test
             }
         }
 
+        private void AssertFileChangesReverted(string basePath)
+        {
+            string path = Path.Combine(basePath, "trunk\\DocumentA.txt");
+
+            string contents = File.ReadAllText(path);
+            Assert.That(contents, Is.EqualTo("document A"));
+        }
+
+        private void AssertFileChangesNotReverted(string basePath)
+        {
+            string path = Path.Combine(basePath, "trunk\\DocumentA.txt");
+
+            string contents = File.ReadAllText(path);
+            Assert.That(contents, Is.EqualTo("the new contents of the file"));
+        }
+
         [Test]
         public void TestRevert()
+        {
+            MockRepository repository = new MockRepository();
+            IBuildEngine engine = repository.StrictMock<IBuildEngine>();
+
+            string path = string.Format("C:\\tmp\\{0}", DateTime.Now.Ticks);
+
+            CheckoutProject(engine, path);
+
+            ModifyFile(path);
+
+            SvnRevert task = new SvnRevert();
+            task.Username = "guest";
+            task.RepositoryPath = path;
+            task.Recursive = true;
+            task.BuildEngine = engine;
+
+            bool success = task.Execute();
+
+            Assert.That(success, Is.True);
+            AssertFileChangesReverted(path);
+        }
+
+        [Test]
+        public void TestRevertNotRecursive()
         {
             MockRepository repository = new MockRepository();
             IBuildEngine engine = repository.StrictMock<IBuildEngine>();
@@ -51,15 +91,7 @@ namespace Karma.MSBuild.SvnTasks.Test
             bool success = task.Execute();
 
             Assert.That(success, Is.True);
-            AssertFileChangesReverted(path);
-        }
-
-        private void AssertFileChangesReverted(string basePath)
-        {
-            string path = Path.Combine(basePath, "trunk\\DocumentA.txt");
-            
-            string contents = File.ReadAllText(path);
-            Assert.That(contents, Is.EqualTo("document A"));
+            AssertFileChangesNotReverted(path);
         }
     }
 }

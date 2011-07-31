@@ -7,12 +7,12 @@ Commands currently supported:
 - cleanup
 - list
 - checkout (limmited support)
-
-In progress
 - revert
 
-Roadmap:
+In progress
 - update
+
+Roadmap:
 - commit
 - merge
 - export

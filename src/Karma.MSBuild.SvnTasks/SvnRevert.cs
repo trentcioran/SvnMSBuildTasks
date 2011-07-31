@@ -20,7 +20,7 @@ namespace Karma.MSBuild.SvnTasks
             SvnRevertArgs args = new SvnRevertArgs();
             args.Depth = Recursive ? SvnDepth.Infinity : SvnDepth.Children;
 
-            return client.Revert(RepositoryPath);
+            return client.Revert(RepositoryPath, args);
         }
     }
 }
