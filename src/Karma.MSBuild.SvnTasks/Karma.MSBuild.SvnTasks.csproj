@@ -120,6 +120,7 @@
   <ItemGroup>
     <Compile Include="SvnCheckout.cs" />
     <Compile Include="SvnCleanup.cs" />
+    <Compile Include="SvnCommit.cs" />
     <Compile Include="SvnInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SvnList.cs" />

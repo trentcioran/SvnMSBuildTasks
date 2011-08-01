@@ -1,5 +1,3 @@
-using System;
-using System.Collections.ObjectModel;
 using Microsoft.Build.Framework;
 using SharpSvn;
 

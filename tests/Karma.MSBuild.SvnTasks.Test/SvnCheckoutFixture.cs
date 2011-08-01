@@ -43,6 +43,24 @@ namespace Karma.MSBuild.SvnTasks.Test
         }
 
         [Test]
+        public void TestCheckoutHeadWithSSL()
+        {
+            MockRepository repository = new MockRepository();
+            IBuildEngine engine = repository.StrictMock<IBuildEngine>();
+
+            SvnCheckout task = new SvnCheckout();
+            task.Username = "guest";
+            task.RepositoryPath = string.Format("C:\\tmp\\testrepo\\{0}", DateTime.Now.Ticks);
+            task.RepositoryUrl = "https://karma-test-repository.googlecode.com/svn/";
+            task.BuildEngine = engine;
+
+            bool success = task.Execute();
+
+            Assert.That(success, Is.True);
+            Assert.That(task.CheckedRevision, Is.Not.EqualTo(0));
+        }
+
+        [Test]
         public void TestCheckoutSpecificRevision()
         {
             Assert.Fail();
