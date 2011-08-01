@@ -8,28 +8,8 @@ using Rhino.Mocks;
 namespace Karma.MSBuild.SvnTasks.Test
 {
     [TestFixture]
-    public class SvnRevertFixture
+    public class SvnRevertFixture : SvnFixtureBase
     {
-        private void CheckoutProject(IBuildEngine engine, string path)
-        {
-            SvnCheckout task = new SvnCheckout();
-            task.RepositoryPath = path;
-            task.RepositoryUrl = "http://karma-test-repository.googlecode.com/svn";
-            task.BuildEngine = engine;
-
-            task.Execute();
-        }
-
-        private void ModifyFile(string basePath)
-        {
-            string path = Path.Combine(basePath, "trunk\\DocumentA.txt");
-
-            using (Stream stream = File.OpenWrite(path))
-            using(StreamWriter writer = new StreamWriter(stream))
-            {
-                writer.Write("the new contents of the file");
-            }
-        }
 
         private void AssertFileChangesReverted(string basePath)
         {
@@ -53,11 +33,35 @@ namespace Karma.MSBuild.SvnTasks.Test
             MockRepository repository = new MockRepository();
             IBuildEngine engine = repository.StrictMock<IBuildEngine>();
 
-            string path = string.Format("C:\\tmp\\{0}", DateTime.Now.Ticks);
+            string path = string.Format(RepositoryPathTemplate, DateTime.Now.Ticks);
 
             CheckoutProject(engine, path);
 
-            ModifyFile(path);
+            ModifyFiles(path);
+
+            SvnRevert task = new SvnRevert();
+            task.Username = "guest";
+            task.RepositoryPath = path;
+            task.Recursive = true;
+            task.BuildEngine = engine;
+
+            bool success = task.Execute();
+
+            Assert.That(success, Is.True);
+            AssertFileChangesReverted(path);
+        }
+
+        [Test]
+        public void TestRevertWithSSL()
+        {
+            MockRepository repository = new MockRepository();
+            IBuildEngine engine = repository.StrictMock<IBuildEngine>();
+
+            string path = string.Format(RepositoryPathTemplate, DateTime.Now.Ticks);
+
+            CheckoutProjectWithSSL(engine, path);
+
+            ModifyFiles(path);
 
             SvnRevert task = new SvnRevert();
             task.Username = "guest";
@@ -77,11 +81,34 @@ namespace Karma.MSBuild.SvnTasks.Test
             MockRepository repository = new MockRepository();
             IBuildEngine engine = repository.StrictMock<IBuildEngine>();
 
-            string path = string.Format("C:\\tmp\\{0}", DateTime.Now.Ticks);
+            string path = string.Format(RepositoryPathTemplate, DateTime.Now.Ticks);
 
             CheckoutProject(engine, path);
 
-            ModifyFile(path);
+            ModifyFiles(path);
+
+            SvnRevert task = new SvnRevert();
+            task.Username = "guest";
+            task.RepositoryPath = path;
+            task.BuildEngine = engine;
+
+            bool success = task.Execute();
+
+            Assert.That(success, Is.True);
+            AssertFileChangesNotReverted(path);
+        }
+
+        [Test]
+        public void TestRevertNotRecursiveWithSSL()
+        {
+            MockRepository repository = new MockRepository();
+            IBuildEngine engine = repository.StrictMock<IBuildEngine>();
+
+            string path = string.Format(RepositoryPathTemplate, DateTime.Now.Ticks);
+
+            CheckoutProjectWithSSL(engine, path);
+
+            ModifyFiles(path);
 
             SvnRevert task = new SvnRevert();
             task.Username = "guest";

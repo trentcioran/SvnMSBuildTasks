@@ -8,12 +8,12 @@ Commands currently supported:
 - list
 - checkout (limmited support)
 - revert
-
-In progress
 - update
 
-Roadmap:
+In progress
 - commit
+
+Roadmap:
 - merge
 - export
 

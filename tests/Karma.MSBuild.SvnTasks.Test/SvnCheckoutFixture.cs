@@ -6,7 +6,7 @@ using Rhino.Mocks;
 namespace Karma.MSBuild.SvnTasks.Test
 {
     [TestFixture]
-    public class SvnCheckoutFixture
+    public class SvnCheckoutFixture: SvnFixtureBase
     {
         [Test]
         [ExpectedException(typeof(UriFormatException))]
@@ -17,7 +17,7 @@ namespace Karma.MSBuild.SvnTasks.Test
 
             SvnCheckout task = new SvnCheckout();
             task.Username = "guest";
-            task.RepositoryPath = string.Format("C:\\tmp\\testrepo\\{0}", DateTime.Now.Ticks);
+            task.RepositoryPath = string.Format(RepositoryPathTemplate, DateTime.Now.Ticks);
             task.RepositoryUrl = "someurl";
             task.BuildEngine = engine;
 
@@ -32,8 +32,26 @@ namespace Karma.MSBuild.SvnTasks.Test
 
             SvnCheckout task = new SvnCheckout();
             task.Username = "guest";
-            task.RepositoryPath = string.Format("C:\\tmp\\testrepo\\{0}", DateTime.Now.Ticks);
+            task.RepositoryPath = string.Format(RepositoryPathTemplate, DateTime.Now.Ticks);
             task.RepositoryUrl = "http://karma-test-repository.googlecode.com/svn/";
+            task.BuildEngine = engine;
+
+            bool success = task.Execute();
+
+            Assert.That(success, Is.True);
+            Assert.That(task.CheckedRevision, Is.Not.EqualTo(0));
+        }
+
+        [Test]
+        public void TestCheckoutHeadWithSSL()
+        {
+            MockRepository repository = new MockRepository();
+            IBuildEngine engine = repository.StrictMock<IBuildEngine>();
+
+            SvnCheckout task = new SvnCheckout();
+            task.Username = "guest";
+            task.RepositoryPath = string.Format(RepositoryPathTemplate, DateTime.Now.Ticks);
+            task.RepositoryUrl = "https://karma-test-repository.googlecode.com/svn/";
             task.BuildEngine = engine;
 
             bool success = task.Execute();
