@@ -1,4 +1,3 @@
-using System;
 using SharpSvn;
 
 namespace Karma.MSBuild.SvnTasks

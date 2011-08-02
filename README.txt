@@ -9,12 +9,16 @@ Commands currently supported:
 - checkout (limmited support)
 - revert
 - update
+- commit
 
 In progress
-- commit
+- export
 
 Roadmap:
 - merge
-- export
 
-NOTE: CURRENTLY HTTPS IS NOT SUPPORTED.
+Working with HTTPS:
+
+Karma.MSBuild.SvnTasks works using SvnAuthentication.AddSubversionFileHandlers mechanism, to configure trusted authorities in case of trus problems check the following link:
+
+http://googlecode.blogspot.com/2008/06/ssl-certificate-renewal-for-project.html

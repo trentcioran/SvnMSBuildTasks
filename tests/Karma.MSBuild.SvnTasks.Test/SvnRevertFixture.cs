@@ -16,7 +16,7 @@ namespace Karma.MSBuild.SvnTasks.Test
             string path = Path.Combine(basePath, "trunk\\DocumentA.txt");
 
             string contents = File.ReadAllText(path);
-            Assert.That(contents, Is.EqualTo("document A"));
+            Assert.That(contents, Is.StringContaining(StringBaseTemplate));
         }
 
         private void AssertFileChangesNotReverted(string basePath)
@@ -24,7 +24,7 @@ namespace Karma.MSBuild.SvnTasks.Test
             string path = Path.Combine(basePath, "trunk\\DocumentA.txt");
 
             string contents = File.ReadAllText(path);
-            Assert.That(contents, Is.EqualTo("the new contents of the file"));
+            Assert.That(contents, Is.StringContaining("the new contents of the file"));
         }
 
         [Test]

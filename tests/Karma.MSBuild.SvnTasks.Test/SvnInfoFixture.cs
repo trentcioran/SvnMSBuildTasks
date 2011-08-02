@@ -25,9 +25,9 @@ namespace Karma.MSBuild.SvnTasks.Test
             bool success = task.Execute();
 
             Assert.That(success, Is.True);
-            Assert.That(task.Revision, Is.EqualTo(2));
-            Assert.That(task.LastChangedAuthor, Is.EqualTo("trentcioran@gmail.com"));
-            Assert.That(task.LastChangedRevision, Is.EqualTo(2));
+            Assert.That(task.Revision, Is.GreaterThan(1));
+            Assert.That(task.LastChangedAuthor, Is.EqualTo("karmasvntest@gmail.com"));
+            Assert.That(task.LastChangedRevision, Is.GreaterThan(1));
         }
 
         [Test]
@@ -47,9 +47,9 @@ namespace Karma.MSBuild.SvnTasks.Test
             bool success = task.Execute();
 
             Assert.That(success, Is.True);
-            Assert.That(task.Revision, Is.EqualTo(2));
-            Assert.That(task.LastChangedAuthor, Is.EqualTo("trentcioran@gmail.com"));
-            Assert.That(task.LastChangedRevision, Is.EqualTo(2));
+            Assert.That(task.Revision, Is.GreaterThan(1));
+            Assert.That(task.LastChangedAuthor, Is.EqualTo("karmasvntest@gmail.com"));
+            Assert.That(task.LastChangedRevision, Is.GreaterThan(1));
         }
     }
 }

@@ -12,27 +12,13 @@ namespace Karma.MSBuild.SvnTasks
     /// </summary>
     public abstract class SvnTaskBase : Task
     {
-        private string _repositoryPath;
-        private bool _isSsl;
-
         #region Inputs
 
         [Required]
         public string Username { get; set; }
 
         [Required]
-        public string RepositoryPath
-        {
-            get { return _repositoryPath; }
-            set
-            {
-                _repositoryPath = value;
-                if (_repositoryPath != null && _repositoryPath.ToLower().StartsWith("https"))
-                {
-                    _isSsl = true;
-                }
-            }
-        }
+        public string RepositoryPath { get; set; }
 
         public string Password { get; set; }
 
@@ -64,14 +50,11 @@ namespace Karma.MSBuild.SvnTasks
                         eventArgs.Password = Password;
                     };
             }
-            
-            if (_isSsl)
-            {
-                client.Authentication.AddConsoleHandlers();
 
-                client.Authentication.SslServerTrustHandlers += SslServerTrustHandlers;
-                client.Authentication.SslClientCertificateHandlers += SslClientCertificateHandlers;
-            }
+            client.Authentication.AddSubversionFileHandlers();
+
+            client.Authentication.SslServerTrustHandlers += SslServerTrustHandlers;
+            client.Authentication.SslClientCertificateHandlers += SslClientCertificateHandlers;
 
             try
             {
@@ -86,7 +69,7 @@ namespace Karma.MSBuild.SvnTasks
         void SslClientCertificateHandlers(object sender, SvnSslClientCertificateEventArgs e)
         {
             e.Save = true;
-            throw new NotImplementedException();
+            e.CertificateFile = "D:\\Proyectos\\personal\\SvnMSBuildTasks\\certificate.cer";
         }
 
         void SslServerTrustHandlers(object sender, SvnSslServerTrustEventArgs e)

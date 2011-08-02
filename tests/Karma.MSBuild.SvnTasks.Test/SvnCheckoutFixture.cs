@@ -60,42 +60,49 @@ namespace Karma.MSBuild.SvnTasks.Test
             Assert.That(task.CheckedRevision, Is.Not.EqualTo(0));
         }
 
+        [Ignore]
         [Test]
         public void TestCheckoutSpecificRevision()
         {
             Assert.Fail();
         }
 
+        [Ignore]
         [Test]
         public void TestCheckoutSpecificDate()
         {
             Assert.Fail();
         }
 
+        [Ignore]
         [Test]
         public void TestCheckoutDepthInfinity()
         {
             Assert.Fail();
         }
 
+        [Ignore]
         [Test]
         public void TestCheckoutDepthChildren()
         {
             Assert.Fail();
         }
 
+        [Ignore]
         [Test]
         public void TestCheckoutDepthEmpty()
         {
             Assert.Fail();
         }
 
+        [Ignore]
         [Test]
         public void TestCheckoutDepthExclude()
         {
             Assert.Fail();
         }
 
+        [Ignore]
         [Test]
         public void TestCheckoutDepthFiles()
         {

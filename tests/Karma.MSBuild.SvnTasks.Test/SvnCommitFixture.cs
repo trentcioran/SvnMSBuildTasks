@@ -16,7 +16,7 @@ namespace Karma.MSBuild.SvnTasks.Test
             IBuildEngine engine = repository.StrictMock<IBuildEngine>();
 
             string path = string.Format("C:\\tmp\\{0}", DateTime.Now.Ticks);
-            CheckoutProject(engine, path);
+            CheckoutProjectWithSSL(engine, path);
             ModifyFiles(path);
 
             SvnCommit task = new SvnCommit();
@@ -30,12 +30,6 @@ namespace Karma.MSBuild.SvnTasks.Test
 
             Assert.That(success, Is.True);
             AssertFilesSubmitted(engine);
-        }
-
-        [Test]
-        public void SvnCommitWithConflicts()
-        {
-            Assert.Fail();
         }
 
         private void AssertFilesSubmitted(IBuildEngine engine)
