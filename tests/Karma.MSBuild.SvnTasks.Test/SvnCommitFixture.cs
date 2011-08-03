@@ -15,7 +15,7 @@ namespace Karma.MSBuild.SvnTasks.Test
             MockRepository repository = new MockRepository();
             IBuildEngine engine = repository.StrictMock<IBuildEngine>();
 
-            string path = string.Format("C:\\tmp\\{0}", DateTime.Now.Ticks);
+            string path = string.Format(RepositoryPathTemplate, DateTime.Now.Ticks);
             CheckoutProjectWithSSL(engine, path);
             ModifyFiles(path);
 
@@ -34,7 +34,7 @@ namespace Karma.MSBuild.SvnTasks.Test
 
         private void AssertFilesSubmitted(IBuildEngine engine)
         {
-            string path = string.Format("C:\\tmp\\{0}", DateTime.Now.Ticks);
+            string path = string.Format(RepositoryPathTemplate, DateTime.Now.Ticks);
             CheckoutProject(engine, path);
 
             string filePath = Path.Combine(path, "trunk\\DocumentA.txt");

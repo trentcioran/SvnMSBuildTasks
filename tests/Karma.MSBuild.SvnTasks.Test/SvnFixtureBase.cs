@@ -6,6 +6,7 @@ namespace Karma.MSBuild.SvnTasks.Test
 {
     public class SvnFixtureBase
     {
+        protected const string RepositoryPathTemplate = "C:\\tmp\\testrepo\\{0}";
         protected readonly string StringBaseTemplate = "the new contents of the file.";
         protected readonly string ModifyString;
         protected string RepositoryURL = "http://karma-test-repository.googlecode.com/svn/";

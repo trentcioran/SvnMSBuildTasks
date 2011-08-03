@@ -134,10 +134,12 @@
     <Compile Include="SvnCheckoutFixture.cs" />
     <Compile Include="SvnCleanupFixture.cs" />
     <Compile Include="SvnCommitFixture.cs" />
+    <Compile Include="SvnExportFixture.cs" />
     <Compile Include="SvnFixtureBase.cs" />
     <Compile Include="SvnInfoFixture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SvnListFixture.cs" />
+    <Compile Include="SvnMergeFixture.cs" />
     <Compile Include="SvnRevertFixture.cs" />
     <Compile Include="SvnUpdateFixture.cs" />
   </ItemGroup>

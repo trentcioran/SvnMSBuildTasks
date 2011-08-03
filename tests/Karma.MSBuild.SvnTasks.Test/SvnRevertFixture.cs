@@ -33,7 +33,7 @@ namespace Karma.MSBuild.SvnTasks.Test
             MockRepository repository = new MockRepository();
             IBuildEngine engine = repository.StrictMock<IBuildEngine>();
 
-            string path = string.Format("C:\\tmp\\{0}", DateTime.Now.Ticks);
+            string path = string.Format(RepositoryPathTemplate, DateTime.Now.Ticks);
 
             CheckoutProject(engine, path);
 
@@ -57,7 +57,7 @@ namespace Karma.MSBuild.SvnTasks.Test
             MockRepository repository = new MockRepository();
             IBuildEngine engine = repository.StrictMock<IBuildEngine>();
 
-            string path = string.Format("C:\\tmp\\{0}", DateTime.Now.Ticks);
+            string path = string.Format(RepositoryPathTemplate, DateTime.Now.Ticks);
 
             CheckoutProjectWithSSL(engine, path);
 
@@ -81,7 +81,7 @@ namespace Karma.MSBuild.SvnTasks.Test
             MockRepository repository = new MockRepository();
             IBuildEngine engine = repository.StrictMock<IBuildEngine>();
 
-            string path = string.Format("C:\\tmp\\{0}", DateTime.Now.Ticks);
+            string path = string.Format(RepositoryPathTemplate, DateTime.Now.Ticks);
 
             CheckoutProject(engine, path);
 
@@ -104,7 +104,7 @@ namespace Karma.MSBuild.SvnTasks.Test
             MockRepository repository = new MockRepository();
             IBuildEngine engine = repository.StrictMock<IBuildEngine>();
 
-            string path = string.Format("C:\\tmp\\{0}", DateTime.Now.Ticks);
+            string path = string.Format(RepositoryPathTemplate, DateTime.Now.Ticks);
 
             CheckoutProjectWithSSL(engine, path);
 
