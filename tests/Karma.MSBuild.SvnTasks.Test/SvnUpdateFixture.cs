@@ -34,9 +34,7 @@ namespace Karma.MSBuild.SvnTasks.Test
             IBuildEngine engine = repository.StrictMock<IBuildEngine>();
 
             string path = string.Format(RepositoryPathTemplate, DateTime.Now.Ticks);
-
             CheckoutProject(engine, path);
-
             ModifyLocalRepository(path);
 
             SvnUpdate task = new SvnUpdate();
@@ -57,9 +55,7 @@ namespace Karma.MSBuild.SvnTasks.Test
             IBuildEngine engine = repository.StrictMock<IBuildEngine>();
 
             string path = string.Format(RepositoryPathTemplate, DateTime.Now.Ticks);
-
             CheckoutProjectWithSSL(engine, path);
-
             ModifyLocalRepository(path);
 
             SvnUpdate task = new SvnUpdate();
@@ -104,9 +100,7 @@ namespace Karma.MSBuild.SvnTasks.Test
             IBuildEngine engine = repository.StrictMock<IBuildEngine>();
 
             string path = string.Format(RepositoryPathTemplate, DateTime.Now.Ticks);
-
             CheckoutProjectWithSSL(engine, path);
-
             ModifyLocalRepository(path);
 
             SvnUpdate task = new SvnUpdate();

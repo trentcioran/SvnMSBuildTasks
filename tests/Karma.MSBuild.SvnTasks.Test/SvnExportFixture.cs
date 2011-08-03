@@ -15,10 +15,9 @@ namespace Karma.MSBuild.SvnTasks.Test
             IBuildEngine engine = repository.StrictMock<IBuildEngine>();
 
             string sourcepath = string.Format(RepositoryPathTemplate, DateTime.Now.Ticks);
-            string path = string.Format(RepositoryPathTemplate, DateTime.Now.Ticks);
-
             CheckoutProject(engine, sourcepath);
 
+            string path = string.Format(RepositoryPathTemplate, DateTime.Now.Ticks);
             SvnExport task = new SvnExport();
             task.BuildEngine = engine;
             task.RepositoryPath = sourcepath;

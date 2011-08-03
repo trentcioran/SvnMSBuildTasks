@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Karma.MSBuild.SvnTasks.Util;
 using Microsoft.Build.Framework;
 using SharpSvn;
 
@@ -61,7 +62,7 @@ namespace Karma.MSBuild.SvnTasks
             SvnCheckOutArgs checkOutArgs = new SvnCheckOutArgs();
             checkOutArgs.Depth = GetDepth();
             checkOutArgs.IgnoreExternals = IgnoreExternals;
-            checkOutArgs.Revision = GetRevision();
+            checkOutArgs.Revision = RevisionParser.SafeParse(Revision);
 
             SvnUpdateResult result;
 
@@ -88,33 +89,6 @@ namespace Karma.MSBuild.SvnTasks
                 SvnUpdateResult updateResult = results[key];
                 Log.LogMessage(MessageImportance.Normal, "[{0} - {1}]", key, updateResult.Revision);
             }
-        }
-
-        private SvnRevision GetRevision()
-        {
-            Log.LogMessage(MessageImportance.Low, "Revision to checkout: {0}", Revision);
-            // defaults to HEAD
-            SvnRevision revision = new SvnRevision(SvnRevisionType.Head);
-            // check revision number
-            long revNumber;
-            if (long.TryParse(Revision, out revNumber))
-            {
-                revision = new SvnRevision(revNumber);
-            }
-            // check revision date
-            DateTime revDate;
-            if (DateTime.TryParse(Revision, out revDate))
-            {
-                revision = new SvnRevision(revDate);
-            }
-            // check for revision type
-            SvnRevisionType revisionType;
-            if (SvnRevisionType.TryParse(Revision, true, out revisionType))
-            {
-                revision = new SvnRevision(revisionType);
-            }
-
-            return revision;
         }
 
         private SvnDepth GetDepth()

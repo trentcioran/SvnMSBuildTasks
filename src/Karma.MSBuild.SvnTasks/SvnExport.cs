@@ -1,4 +1,5 @@
 using System;
+using Karma.MSBuild.SvnTasks.Util;
 using Microsoft.Build.Framework;
 using SharpSvn;
 
@@ -31,7 +32,7 @@ namespace Karma.MSBuild.SvnTasks
         private SvnTarget GetTarget()
         {
             SvnTarget target;
-            SvnRevision revision = GetRevision();
+            SvnRevision revision = RevisionParser.SafeParse(Revision);
             if (Uri.IsWellFormedUriString(RepositoryPath, UriKind.Absolute))
             {
                 target = new SvnUriTarget(RepositoryPath, revision);
@@ -43,33 +44,5 @@ namespace Karma.MSBuild.SvnTasks
             
             return target;
         }
-
-        private SvnRevision GetRevision()
-        {
-            Log.LogMessage(MessageImportance.Low, "Revision to checkout: {0}", Revision);
-            // defaults to HEAD
-            SvnRevision revision = new SvnRevision(SvnRevisionType.Head);
-            // check revision number
-            long revNumber;
-            if (long.TryParse(Revision, out revNumber))
-            {
-                revision = new SvnRevision(revNumber);
-            }
-            // check revision date
-            DateTime revDate;
-            if (DateTime.TryParse(Revision, out revDate))
-            {
-                revision = new SvnRevision(revDate);
-            }
-            // check for revision type
-            SvnRevisionType revisionType;
-            if (SvnRevisionType.TryParse(Revision, true, out revisionType))
-            {
-                revision = new SvnRevision(revisionType);
-            }
-
-            return revision;
-        }
-
     }
 }

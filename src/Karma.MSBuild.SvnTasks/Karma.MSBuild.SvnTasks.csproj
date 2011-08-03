@@ -129,6 +129,7 @@
     <Compile Include="SvnRevert.cs" />
     <Compile Include="SvnTaskBase.cs" />
     <Compile Include="SvnUpdate.cs" />
+    <Compile Include="Util\RevisionParser.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
